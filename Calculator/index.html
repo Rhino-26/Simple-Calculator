@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Precision Etch - Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="theme-dark">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="brand">The Precision Etch</div>
+        <div class="nav-links">
+            <button class="nav-btn" id="nav-history">History</button>
+            <button class="nav-btn" id="nav-settings">Settings</button>
+            <button class="nav-icon" id="theme-toggle" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+            <button class="nav-icon" id="about-btn" aria-label="About"><i class="fas fa-question-circle"></i></button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- History Sidebar -->
+        <aside class="history-panel" id="history-panel">
+            <div class="history-header">
+                <h3>RECENT HISTORY</h3>
+                <button id="close-history-mobile" class="close-mobile"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="history-list" id="history-list">
+                <!-- History Items Will Load Here -->
+                <div class="empty-history">No history yet</div>
+            </div>
+            <button id="clear-history" class="clear-btn">Clear History</button>
+        </aside>
+
+        <!-- Calculator Center -->
+        <div class="calculator-wrapper">
+            <div class="calculator" id="calculator">
+                <!-- Display Area -->
+                <div class="display">
+                    <div class="display-top">
+                        <div class="angle-toggle" id="angle-toggle">
+                            <span class="angle-btn active" id="deg-label">DEG</span>
+                            <span class="angle-btn" id="rad-label">RAD</span>
+                        </div>
+                        <div class="prev-operand" id="prev-operand"></div>
+                    </div>
+                    <div class="curr-operand" id="curr-operand">0</div>
+                </div>
+
+                <!-- Keypads wrapper -->
+                <div class="keypads" id="keypads">
+                    <!-- Scientific Keypad -->
+                    <div class="scientific-keypad" id="scientific-keypad">
+                        <button class="btn fn-btn" data-action="sin">sin</button>
+                        <button class="btn fn-btn" data-action="cos">cos</button>
+                        <button class="btn fn-btn" data-action="tan">tan</button>
+                        <button class="btn fn-btn" data-action="pi">π</button>
+                        
+                        <button class="btn fn-btn" data-action="log">log</button>
+                        <button class="btn fn-btn" data-action="ln">ln</button>
+                        <button class="btn fn-btn" data-action="sqrt">√</button>
+                        <button class="btn fn-btn" data-action="e">e</button>
+
+                        <button class="btn fn-btn" data-action="pow">^</button>
+                        <button class="btn fn-btn" data-action="fact">!</button>
+                        <button class="btn fn-btn" data-action="()">( )</button>
+                        <button class="btn fn-btn" data-action="inv">1/x</button>
+                    </div>
+
+                    <!-- Standard Keypad -->
+                    <div class="standard-keypad">
+                        <button class="btn btn-primary btn-clear" data-action="clear" id="clear-btn">C</button>
+                        <button class="btn btn-secondary" data-action="delete"><i class="fas fa-backspace"></i></button>
+                        <button class="btn btn-secondary" data-action="mod">%</button>
+                        <button class="btn btn-secondary op-btn" data-action="/">÷</button>
+
+                        <button class="btn num-btn" data-number="7">7</button>
+                        <button class="btn num-btn" data-number="8">8</button>
+                        <button class="btn num-btn" data-number="9">9</button>
+                        <button class="btn btn-secondary op-btn" data-action="*">×</button>
+
+                        <button class="btn num-btn" data-number="4">4</button>
+                        <button class="btn num-btn" data-number="5">5</button>
+                        <button class="btn num-btn" data-number="6">6</button>
+                        <button class="btn btn-secondary op-btn" data-action="-">−</button>
+
+                        <button class="btn num-btn" data-number="1">1</button>
+                        <button class="btn num-btn" data-number="2">2</button>
+                        <button class="btn num-btn" data-number="3">3</button>
+                        <button class="btn btn-secondary op-btn" data-action="+">+</button>
+
+                        <button class="btn num-btn" data-number="0">0</button>
+                        <button class="btn num-btn" data-action="decimal">.</button>
+                        <button class="btn btn-equals" data-action="calculate">=</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Tabs -->
+            <div class="side-tabs">
+                <button class="tab-btn" id="toggle-scientific" title="Scientific Mode"><i class="fas fa-flask"></i></button>
+                <button class="tab-btn" id="toggle-history-tab" title="History"><i class="fas fa-history"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="copyright">© 2024 THE PRECISION ETCH. DIGITAL OBSIDIAN DESIGN.</div>
+        <div class="footer-links">
+            <a href="#">PRIVACY</a>
+            <a href="#">TERMS</a>
+            <a href="#">API</a>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal overlay-hidden" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="theme-select">Theme</label>
+                    <select id="theme-select">
+                        <option value="theme-dark">Dark Mode</option>
+                        <option value="theme-light">Light Mode</option>
+                        <option value="theme-neon">Neon Mode</option>
+                        <option value="theme-glass">Glassmorphism Mode</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="mode-select">Default Calculator Mode</label>
+                    <select id="mode-select">
+                        <option value="standard">Standard</option>
+                        <option value="scientific">Scientific</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal overlay-hidden" id="about-modal">
+         <div class="modal-content">
+            <div class="modal-header">
+                <h2>About</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="about-logo"><i class="fas fa-calculator"></i></div>
+                <h3>The Precision Etch</h3>
+                <p class="version">Version 2.0.1</p>
+                <p>Developed by Digital Obsidian Design</p>
+                <p class="description">A beautifully crafted, highly precise digital calculator supporting both standard and scientific workflows across all your devices.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
