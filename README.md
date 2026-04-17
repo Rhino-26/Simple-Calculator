@@ -42,6 +42,7 @@ Includes:
 - Neon Mode
 - Glassmorphism Mode
 - Dynamic theme switching without page reload
+  
 ℹ️ About Section
 
 Displays:
@@ -49,8 +50,8 @@ Displays:
 - Version
 - Developer info
 - Short description
+  
 📱 Responsive Design
-
 Fully optimized for all screen sizes:
 
 - Mobile (≤ 600px): Compact, touch-friendly layout
