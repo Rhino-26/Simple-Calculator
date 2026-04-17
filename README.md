@@ -52,6 +52,7 @@ Displays:
 - Short description
   
 📱 Responsive Design
+
 Fully optimized for all screen sizes:
 
 - Mobile (≤ 600px): Compact, touch-friendly layout
